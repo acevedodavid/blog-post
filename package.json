@@ -1,0 +1,16 @@
+{
+  "name": "blog-post",
+  "version": "1.0.0",
+  "description": "lab 7 - web applications development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "david acevedo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "uuid": "^3.3.2"
+  }
+}
