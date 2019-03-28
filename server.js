@@ -154,59 +154,6 @@ app.delete('/blog-posts', jsonParser, (req, res) =>{
     })
 });
 
-//put request
-app.put('/blog-posts/:id', (req,res) => {
-    
-    let id = req.params.id
-
-    //STATUS 406 IF ID MISSING IN PARAMS
-    if (!(id)) {
-        res.status(406).json({
-            message: 'Missing field id in params.',
-            status: 406
-        })
-    }
-
-    if (req.body.length == 0) {
-        res.status(404).json({
-            message: `Empty body.`,
-            status: 404
-        }).send("Finish")
-    }
-
-    posts.forEach(item => {
-        if (item.id == id) {
-            empty = true
-            for (let key in req.body) {
-                if (key == 'title' || key == 'content' || key == 'author') {
-                    item[key] = req.body[key]
-                    empty = false
-                }
-                else if (key == 'publishDate') {
-                    item[key] = new Date(req.body[key])
-                    empty = false
-                }
-            }
-            if (empty) {
-                return res.status(404).json({
-                    message: 'Empty body.',
-                    status: 404
-                }).send("Finish")
-            }
-            else
-                res.status(204).json({
-                    message: `Post with id '${id}' successfully updated.`,
-                    status: 204
-                }).send("Finish")
-        }
-    })
-
-    res.status(404).json({
-        message: 'Post was not found',
-        status: 404
-    })
-});
-
 app.listen(8080, () => {
     console.log(`App running in 8080`)
 });
